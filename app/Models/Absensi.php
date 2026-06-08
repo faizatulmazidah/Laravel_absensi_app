@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Absensi extends Model
 {
-    protected $table = 'absensi'; // Mengarah ke tabel yang ada 11 data
-    protected $primaryKey = 'pengenal'; // Sesuai kolom di HeidiSQL Anda
-    public $timestamps = false;
-    protected $fillable = ['nama_siswa', 'kelas', 'keterangan'];
+    protected $table = 'absensis'; 
+
+    protected $guarded = [];
+
+    // Relasi: Menegaskan bahwa santri_id di tabel absen terhubung ke id asli si santri
+    public function santri()
+    {
+        return $this->belongsTo(Santri::class, 'santri_id', 'id');
+    }
 }
